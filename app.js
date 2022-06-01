@@ -17,6 +17,10 @@ app.post("/book", (req, res) => {
   res.send(books[books.length - 1]);
 });
 
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
+
 app.get("/book", (req, res) => {
   const sortedBooks = [...books];
   sortedBooks.sort((a, b) => a.title - b.title);
