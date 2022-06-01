@@ -16,7 +16,10 @@ app.get("/", function (req, res) {
 
 app.get("/api/books", (req, res) => {
   const sortedBooks = [...books];
-  sortedBooks.sort((a, b) => a.title - b.title);
+  // sortedBooks.sort((a, b) => a.title - b.title);
+  sortedBooks.sort((a, b) =>
+    a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+  );
   res.status(200).send({ books: sortedBooks });
 });
 
