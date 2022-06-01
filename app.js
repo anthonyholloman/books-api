@@ -17,19 +17,18 @@ app.get("/", function (req, res) {
 app.get("/api/books", (req, res) => {
   const sortedBooks = [...books];
   sortedBooks.sort((a, b) => a.title - b.title);
-  res.json(sortedBooks);
+  res.status(200).send({ books: sortedBooks });
 });
 
 app.post("/api/books", (req, res) => {
   const book = req.body;
   books.push({ id: books.length + 1, ...book });
-
-  res.send(books[books.length - 1]);
+  res.status(201).send(books[books.length - 1]);
 });
 
 app.delete("/api/books", (req, res) => {
   books = [];
-  res.send(204);
+  res.sendStatus(204);
 });
 
 module.exports = app;
